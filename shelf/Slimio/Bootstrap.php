@@ -33,15 +33,13 @@ class Bootstrap  {
                     $blalias = substr($properties[0],0, strpos($properties[0], '('));
                     $class_loader = Factory::newClassloaderInstance();
                     $class = $class_loader->loadClass($blalias);
-                    #$args = $properties;
                     $args = array_values($properties);
-                   # echo '<pre>'; print_r($args); exit;
+                    unset($args[0]);
                     if (method_exists($class, $method)) {
                         call_user_func_array(array($class,$method),array(
-                            array('query'   => $query_params,
-                                  'arg'     => $args)
+                            array('query'   => json_encode($query_params),
+                                  'arg'     => json_encode($args))
                         ));
-                        echo ':)'; exit;
                         
                     }
                 }

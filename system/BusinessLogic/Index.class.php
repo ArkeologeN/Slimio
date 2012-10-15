@@ -16,8 +16,7 @@ class BL_Index {
     
     
     public function hello($fragment=array()) {
-        print 'hello to my work.';
-        echo "<pre>"; print_r($fragment); exit;
+        
     }
     
 }
