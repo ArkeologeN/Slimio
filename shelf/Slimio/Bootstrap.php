@@ -17,7 +17,6 @@ class Bootstrap  {
     }
     
     public function registerRequestHandler (\Slim\Slim $application) {
-        #echo "<pre>"; print_r($application->request()); exit;
         $properties = array();
         $query_params = array();
         $args       = array();
@@ -29,22 +28,25 @@ class Bootstrap  {
             if (strlen($path_info) > 0) {
                 $properties = array_values(array_filter(explode('/', $path_info), 'strlen'));
                 if (is_array($properties) && array_key_exists(0, $properties)) {
-                    $method = rtrim(substr($properties[0], strpos($properties[0], '(')+1, strpos($path_info, ')')),')');//$properties[0];
+                    $method = rtrim(substr($properties[0], strpos($properties[0], '(')+1, strpos($path_info, ')')),')').Constants::BL_HANDLER_SUFFIX;
                     $blalias = substr($properties[0],0, strpos($properties[0], '('));
                     $class_loader = Factory::newClassloaderInstance();
+                    $class_loader->setTemplateDispatcherVO(new \Slimio\Vo\TemplateDispatcher($blalias, $method));
                     $class = $class_loader->loadClass($blalias);
                     $args = array_values($properties);
                     unset($args[0]);
-                    if (method_exists($class, $method)) {
-                        call_user_func_array(array($class,$method),array(
+                    $formatted_method = $method;
+                    if (method_exists($class, $formatted_method)) {
+                        call_user_func_array(array($class,$formatted_method),array(
                             array('query'   => json_encode($query_params),
                                   'arg'     => json_encode($args))
                         ));
                         
+                    } else {
+                        throw new \Exception('No respective Handler is defined as "'.$method.'"');
                     }
                 }
             }
-           echo "<pre>"; print_r($properties); exit;
         } catch (Exception $ex) {
             echo "<pre>"; print_r($ex); exit;
         }

@@ -20,6 +20,7 @@ class Classloader {
     private static $instance = null;
     private $_classPath = null;
     private $_className = null;
+    private $_templateDispatcherVo = null;
 
 
     public static function getInstance () {
@@ -39,7 +40,7 @@ class Classloader {
                 $this->includeClassPath();
                 if ( $this->isClassExist()) {
                     $reflecion_class = new \ReflectionClass($this->copyClone());
-                    $class = $reflecion_class->newInstance();
+                    $class = $reflecion_class->newInstance($this->getTempalteDispatcherVO());   
                     return $class;
                 } 
             } else {
@@ -51,7 +52,7 @@ class Classloader {
     }
     
     private function defineClassPath ($alias) {
-        $this->_classPath = getcwd().DIRECTORY_SEPARATOR.'system'.DIRECTORY_SEPARATOR.Constants::DIR_BL.DIRECTORY_SEPARATOR.ucfirst($alias).'.'.Constants::BL_FILE_EXTENSION.'.php';
+        $this->_classPath = getcwd().DS.'system'.DS.Constants::DIR_BL.DS.ucfirst($alias).'.'.Constants::BL_FILE_EXTENSION.'.php';
     }
     
     private function isFileExist () {
@@ -86,6 +87,14 @@ class Classloader {
     
     private function getClassName () {
         return $this->_className;
+    }
+    
+    public function setTemplateDispatcherVO (\Slimio\Vo\TemplateDispatcher $object) {
+        $this->_templateDispatcherVo = $object;
+    }
+    
+    public function getTempalteDispatcherVO () {
+        return $this->_templateDispatcherVo;
     }
 }
 

@@ -23,10 +23,6 @@ class Factory  {
        return \Slimio\Bootstrap::getInstance();
     }
     
-    public static function hiieo() {
-        print 'hi hi';
-    }
-    
     public static function newClassloaderInstance () {
         return Classloader::getInstance();
     }

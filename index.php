@@ -1,6 +1,7 @@
 <?php 
 
 try {
+    define("DS", DIRECTORY_SEPARATOR);
     require 'shelf/Slim/Slim.php';
     require 'shelf/Slimio/Factory.php';
 

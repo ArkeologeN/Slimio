@@ -12,12 +12,23 @@
  * @author Hamza Waqas
  */
 
-class BL_Index {
+class BL_Index extends Slimio\BusinessLogic  {
     
     
-    public function hello($fragment=array()) {
+    public function _initialize() {
         
     }
+    
+    public function helloHandler($fragment=array()) {
+        #echo "<pre>"; print_r($fragment); exit;
+        $this->transport("hi", "Hamza");
+    }
+    
+    public function byeHandler($fragment = array()) {
+        echo "<pre>"; print_r($fragment); exit;
+    }
+
+    
     
 }
 

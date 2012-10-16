@@ -9,7 +9,7 @@
 /**
  * Description of Constants
  *
- * @author alihashmi
+ * @author HamzaWaqas
  */
 
 namespace Slimio;
@@ -18,8 +18,11 @@ class Constants {
     //put your code here
     
     const DIR_BL = 'BusinessLogic';
+    const DIR_PL = 'PresentationLayer';
     const BL_FILE_EXTENSION = 'class';
     const BL_CLASS_PREFIX = "BL_";
+    const PL_SUB_EXTENSION = "slimio";
+    const BL_HANDLER_SUFFIX = 'Handler';
 }
 
 ?>
