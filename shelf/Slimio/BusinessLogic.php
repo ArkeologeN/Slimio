@@ -1,15 +1,13 @@
 <?php
 
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
-
 /**
- * Description of BusinessLogic
+ * Abstract class to be extended for Business Logics / Controllers of the application.
  *
- * @author Hamza Waqas
+ * @author  HamzaWaqas
+ * @package Slimio
+ * @version 1.0
+ * @name    BusinessLogic
+ * 
  */
 
 namespace Slimio;
@@ -33,14 +31,28 @@ abstract class BusinessLogic {
         $this->_presentationLayer = new \Slimio\PresentationLayer($pl_dir, $pl_file);    
     }
     
+    /**
+     *
+     * @param String $vname
+     * @param mixed $value 
+     * 
+     * Port the values from Business Logic to Presentation layer
+     */
     public function transport($vname, $value) {
         $this->_presentationLayer->dataTransporter($vname, $value);
     }
     
+    
+    /**
+     * Destructor of the class. 
+     */
     public function __destruct() {
         $this->_presentationLayer->renderLayer();
     }
-
+    
+    /**
+     * Do something before execution of parent code. 
+     */
     public abstract function _initialize();
 }
 

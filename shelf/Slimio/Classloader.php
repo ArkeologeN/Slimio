@@ -1,15 +1,15 @@
 <?php
 
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
-
 /**
- * Description of Classloader
+ * Core class helps to load the respective class on request fragments.
+ * This works like a frontController. Pushes the calls to respective Business Logics.
+ * 
  *
- * @author Hamza Waqas
+ * @author  HamzaWaqas
+ * @package Slimio
+ * @version 1.0
+ * @name    Classloader
+ * 
  */
 namespace Slimio;
 use Slimio\Constants;
@@ -29,6 +29,15 @@ class Classloader {
         return self::$instance;
     }
     
+    
+    /**
+     *
+     * @param String $className
+     * @return Object $class
+     * 
+     *  Method helps to load class dynamically without __autoload implementation.
+     *  Pattern uses Reflection. 
+     */
     public function loadClass ($className) {
         $this->setClassName(Constants::BL_CLASS_PREFIX.ucfirst($className));
         try {
@@ -51,10 +60,19 @@ class Classloader {
          }   
     }
     
+    
+    /**
+     *
+     * @param String $alias Defines the class path to be added.
+     */
     private function defineClassPath ($alias) {
         $this->_classPath = getcwd().DS.'system'.DS.Constants::DIR_BL.DS.ucfirst($alias).'.'.Constants::BL_FILE_EXTENSION.'.php';
     }
     
+    /**
+     *
+     * @return boolean Check if file exist on respective DIR
+     */
     private function isFileExist () {
         if (file_exists($this->_classPath)) 
             return true;
@@ -62,9 +80,17 @@ class Classloader {
         return;
     }
     
+    /**
+     * Loads Class 
+     */
     private function includeClassPath () {
         include $this->_classPath;
     }    
+    
+    /**
+     *
+     * @return boolean Check if class already exist.
+     */
     private function isClassExist () {
         $formatted_name = $this->getClassName();
         if (!class_exists($formatted_name))
@@ -73,26 +99,51 @@ class Classloader {
         return true;
     }
     
+    /**
+     *
+     * @return Object $Class Returns blueprint instance of Reflection class. 
+     */
     private function copyClone () {
         return  $this->getClassName();
     }
     
+    /**
+     *
+     * @param String $msg
+     * @throws \Exception Throws exception with given message
+     */
     private function partialException($msg) {
         throw new \Exception($msg);
     }
     
+    /**
+     *
+     * @param String $name Possess class name and set it to internal usage.
+     */
     private function setClassName ($name) {
         $this->_className = $name;
     }
     
+    /**
+     *
+     * @return String returns class name. 
+     */
     private function getClassName () {
         return $this->_className;
     }
     
+    /**
+     *
+     * @param \Slimio\Vo\TemplateDispatcher $object sets template dispatcher object
+     */
     public function setTemplateDispatcherVO (\Slimio\Vo\TemplateDispatcher $object) {
         $this->_templateDispatcherVo = $object;
     }
     
+    /**
+     *
+     * @return Object $templateDispatcherVO Returns VO Object. 
+     */
     public function getTempalteDispatcherVO () {
         return $this->_templateDispatcherVo;
     }

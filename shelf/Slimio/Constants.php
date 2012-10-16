@@ -7,9 +7,13 @@
  */
 
 /**
- * Description of Constants
+ * The global constant class helps internal shelfing to use hard coded values.
  *
- * @author HamzaWaqas
+ * @author  HamzaWaqas
+ * @access  Protected
+ * @package Slimio
+ * @version 1.0
+ * 
  */
 
 namespace Slimio;

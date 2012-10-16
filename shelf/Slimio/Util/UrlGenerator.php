@@ -1,15 +1,12 @@
 <?php
-
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
-
 /**
- * Description of UrlGenerator
+ * Utlitity class for generating inhouse / internal URLs
  *
- * @author Hamza Waqas
+ * @author  HamzaWaqas
+ * @package Slimio\Util
+ * @version 1.0
+ * @name    UrlGenerator
+ * 
  */
 namespace Slimio\Util;
 
@@ -18,6 +15,14 @@ class UrlGenerator {
     
     private static $_url = "/";
     
+    /**
+     *
+     * @param Array $frag
+     * @return String
+     * @throws \Exception  if no $frags were defined
+     * 
+     * Helps to generate the url for moving towards other business logics on Presentation layer.
+     */
     public static function generate ($frag = array()) {      
         if ( !is_array($frag) || empty($frag))
             throw  new \Exception('Generator needs URL Fragments to generate URL');//Exception('');
@@ -37,6 +42,15 @@ class UrlGenerator {
         return self::$_url;
     }
     
+    /**
+     *
+     * @param Array $arr
+     * @param String $index
+     * @return mixed
+     * @throws \Exception   if key doesn't exist
+     * 
+     * Helps to double check the URL fragments already defined in array.
+     */
     private static function isIndex($arr, $index) {
         if ( !array_key_exists($index, $arr))
                throw new \Exception('_logic is not found for generating url in '.  get_class($this));

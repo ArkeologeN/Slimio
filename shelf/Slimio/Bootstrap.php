@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * Bootstraps on top of the 3 Tiers for Request Handling.
+ *
+ * @author  HamzaWaqas
+ * @package Slimio
+ * @version 1.0
+ * @name    Bootstrap
+ * 
+ */
 namespace Slimio;
 
 use Slimio\Factory;
@@ -16,6 +25,11 @@ class Bootstrap  {
         return self::$instance;
     }
     
+    /**
+     *
+     * @param \Slim\Slim $application Application Object.
+     * @throws \Exception 
+     */
     public function registerRequestHandler (\Slim\Slim $application) {
         $properties = array();
         $query_params = array();
@@ -52,6 +66,9 @@ class Bootstrap  {
         }
     }
     
+    /**
+     * Starts the request flow. 
+     */
     protected function start() {
         $this->getAppObject()->run();
     }
