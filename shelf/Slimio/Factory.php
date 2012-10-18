@@ -1,15 +1,15 @@
 <?php
 
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
 
 /**
- * Description of Factory
+ * Pattern to give a new fresh instance of the circulating classes.
  *
- * @author alihashmi
+ * @author  HamzaWaqas
+ * @package Slimio
+ * @version 1.0
+ * @name    Factory
+ * @uses    Slimio\Bootstrap, Slimio\Classloader
+ * 
  */
 
 namespace Slimio;

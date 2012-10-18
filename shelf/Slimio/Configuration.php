@@ -1,15 +1,16 @@
 <?php
 
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
+
 
 /**
- * Description of Configuration
+ * Give the access to restrict.ini data instantly.
  *
- * @author alihashmi
+ * @author  HamzaWaqas
+ * @package Slimio
+ * @version 1.0
+ * @name    Configuration
+ * @uses    Slimio\Constants
+ * 
  */
 
 namespace Slimio;

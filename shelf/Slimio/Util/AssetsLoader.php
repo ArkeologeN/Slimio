@@ -1,15 +1,14 @@
 <?php
 
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
-
 /**
- * Description of AssetsLoader
+ * Helps to load Assets dynamically on the run time.
  *
- * @author alihashmi
+ * @author  HamzaWaqas
+ * @access  Protected
+ * @package Slimio
+ * @name    AssetsLoader
+ * @version 1.0
+ * 
  */
 class AssetsLoader {
     

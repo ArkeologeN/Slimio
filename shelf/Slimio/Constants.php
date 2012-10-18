@@ -1,11 +1,5 @@
 <?php
 
-/*
- *  Copyright (c) 2012. All Rights Reserved. The PlumTree Group
- *  Code is under development state at The PlumTree Group written by
- *  Hamza Waqas (Mobile Application Developer) at Karachi from MacOSX
- */
-
 /**
  * The global constant class helps internal shelfing to use hard coded values.
  *
