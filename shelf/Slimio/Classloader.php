@@ -49,7 +49,8 @@ class Classloader {
                 $this->includeClassPath();
                 if ( $this->isClassExist()) {
                     $reflecion_class = new \ReflectionClass($this->copyClone());
-                    $class = $reflecion_class->newInstance($this->getTempalteDispatcherVO());   
+                    $hooking_class = $this->implementHooking();
+                    $class = $reflecion_class->newInstance($this->getTempalteDispatcherVO(), $hooking_class);   
                     return $class;
                 } 
             } else {
@@ -58,6 +59,28 @@ class Classloader {
          } catch (Exception $ex) {
             echo "<pre>"; print_r($ex); exit;
          }   
+    }
+    
+    private function implementHooking() {
+        $init_data = array();
+        $hook_object = null;
+        $file_path_hook = ROOT_DIR.DS.'system'.DS.Constants::DIR_HOOKER.DS.'Hooking.php';
+        $slimio_configuration = \Slimio\Configuration::getInstance()->load();
+        $section_hook = $slimio_configuration->getConfigurations('hook');
+        if ( $section_hook['hook.enable'] == 1) {
+            if ( !file_exists($file_path_hook))
+                throw new \Exception('Hooking is enable and Hooking.php not found in '.$file_path_hook);
+            
+            require_once $file_path_hook;
+            if ( !class_exists('Hooking'))
+                throw new \Exception('class Hooking not found in '.$file_path_hook);
+            
+            
+            $hook_class = new \ReflectionClass('Hooking');
+            $hook_object = $hook_class->newInstance();
+#            echo '<pre>'; print_r($hook_object->after_handler()); exit;
+        }
+        return $hook_object;
     }
     
     

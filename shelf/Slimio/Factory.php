@@ -26,6 +26,7 @@ class Factory  {
     public static function newClassloaderInstance () {
         return Classloader::getInstance();
     }
+    
 }
 
 ?>

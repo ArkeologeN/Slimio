@@ -23,6 +23,8 @@ class Constants {
     
     const DIR_BL = 'BusinessLogic';
     const DIR_PL = 'PresentationLayer';
+    const DIR_HOOKER = 'Hooker';
+    const DIR_CONFIGURATION = 'Configuration';
     const BL_FILE_EXTENSION = 'class';
     const BL_CLASS_PREFIX = "BL_";
     const PL_SUB_EXTENSION = "slimio";
