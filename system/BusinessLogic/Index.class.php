@@ -1,6 +1,6 @@
 <?php
 
-
+use Slimio\Util\AssetsLoader;
 class BL_Index extends Slimio\BusinessLogic  {
     
     
@@ -9,8 +9,9 @@ class BL_Index extends Slimio\BusinessLogic  {
     }
     
     public function helloHandler($fragment=array()) {
-        #echo "<pre>"; print_r($fragment); exit;
-        $this->runHook('after_handler',array('hamza'));
+        AssetsLoader::loadJS('bootstrap');
+        AssetsLoader::loadCSS("bootstrap.min");
+        #$this->runHook('after_handler',array('hamza'));
         $this->transport("hi", "Hamza");
     }
     

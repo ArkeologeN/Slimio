@@ -18,6 +18,8 @@
 
 namespace Slimio;
 
+use Slimio\Util\AssetsLoader;
+
 class PresentationLayer {
     
     private $_parentDir, $_handlerViewer = null;
@@ -57,6 +59,11 @@ class PresentationLayer {
         if (!file_exists($file_path))
             throw new \Exception('Respective layout not found in: '.$file_path);
         
+        $css_files = AssetsLoader::getCSS();
+        $js_files  = AssetsLoader::getJS();
+        $scripts = ''; $styles = '';
+        $scripts = $this->jsHtmlBuilder($js_files);
+        $styles  = $this->cssHtmlBuilder($css_files);
         include ROOT_DIR.'/assets/layout/header.layout';
         include $file_path;
         include ROOT_DIR.'/assets/layout/footer.layout';
@@ -71,6 +78,28 @@ class PresentationLayer {
      */
     public function makeUrl($frag = array()) {
         return \Slimio\Util\UrlGenerator::generate($frag);
+    }
+    
+    private function jsHtmlBuilder($js_files) {
+        $scripts = '';
+        if (is_array($js_files) && !empty ($js_files)) {
+            foreach ($js_files as $js_file) {
+                $scripts .= '<script type="text/javascript">'.$js_file.'</script>'. "\n";
+            }
+        }
+        
+        return $scripts;
+    }
+    
+    private function cssHtmlBuilder($css_files) {
+        $styles = '';
+        if (is_array($css_files) && !empty($css_files)) {
+            foreach ($css_files as $css_file) {
+                $styles .= '<link rel="stylesheet" href="'.$css_file .'" media="all" '.'/>'. "\n";
+            }
+        }
+        
+        return $styles;
     }
 }
 

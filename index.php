@@ -3,7 +3,8 @@
 try {
     define("DS", DIRECTORY_SEPARATOR);
     define("ROOT_DIR", getcwd());
-    define("ASSETS_DIR", 'http://'.$_SERVER['HTTP_HOST'].'/etcs/Slimio/assets/');
+    define("BASE_URL", $_SERVER['HTTP_HOST']);
+    define("ASSETS_DIR", dirname(__FILE__).'/assets/'); // Change it Later.
     require 'shelf/Slim/Slim.php';
     require 'shelf/Slimio/Factory.php';
 
