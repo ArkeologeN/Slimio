@@ -4,7 +4,9 @@ try {
     define("DS", DIRECTORY_SEPARATOR);
     define("ROOT_DIR", getcwd());
     define("BASE_URL", $_SERVER['HTTP_HOST']);
-    define("ASSETS_DIR", dirname(__FILE__).'/assets/'); // Change it Later.
+    define("CDN",BASE_URL); // Change with CDN Path later
+    define("ASSETS_DIR",'assets/'); // Change it Later..
+    #print ASSETS_DIR; exit;
     require 'shelf/Slim/Slim.php';
     require 'shelf/Slimio/Factory.php';
 
