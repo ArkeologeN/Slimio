@@ -31,9 +31,7 @@ class Bootstrap  {
      * @throws \Exception 
      */
     public function registerRequestHandler (\Slim\Slim $application) {
-        $properties = array();
-        $query_params = array();
-        $args       = array();
+        $properties = $query_params = $args = array();
         $method = null;
         try {
             $this->setAppObject($application);

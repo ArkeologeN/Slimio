@@ -62,7 +62,6 @@ class Classloader {
     }
     
     private function implementHooking() {
-        $init_data = array();
         $hook_object = null;
         $file_path_hook = ROOT_DIR.DS.'system'.DS.Constants::DIR_HOOKER.DS.'Hooking.php';
         $slimio_configuration = \Slimio\Configuration::getInstance()->load();
@@ -78,7 +77,6 @@ class Classloader {
             
             $hook_class = new \ReflectionClass('Hooking');
             $hook_object = $hook_class->newInstance();
-#            echo '<pre>'; print_r($hook_object->after_handler()); exit;
         }
         return $hook_object;
     }

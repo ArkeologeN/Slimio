@@ -22,7 +22,7 @@ use Slimio\Util\AssetsLoader;
 
 class PresentationLayer {
     
-    private $_parentDir, $_handlerViewer = null;
+    private $_parentDir,$_handlerViewer = null;
     private $_dataVariables = array();
     
     /**
@@ -53,6 +53,8 @@ class PresentationLayer {
      * This function will proceed layout rendering and take the call to htmlize process.
      */
     public function renderLayer() {
+        $hook_object = new \Hooking();
+        $hook_object->beforeLaunch();
         extract($this->_dataVariables);
         $formatted_handlerView = substr($this->_handlerViewer,0, strpos($this->_handlerViewer, 'Handler')).'.'.\Slimio\Constants::PL_SUB_EXTENSION.'.php';
         $file_path = getcwd().DS.'system'.DS.\Slimio\Constants::DIR_PL.DS.$this->_parentDir.DS.$formatted_handlerView;
@@ -67,6 +69,7 @@ class PresentationLayer {
         include ROOT_DIR.'/assets/layout/header.layout';
         include $file_path;
         include ROOT_DIR.'/assets/layout/footer.layout';
+        $hook_object->afterLaunch();
     }
     
     /**

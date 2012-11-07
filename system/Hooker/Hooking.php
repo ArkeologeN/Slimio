@@ -7,10 +7,36 @@
  */
 
 
-class Hooking extends Slimio\Hook {
+class Hooking extends Slimio\ConcreteHook {
     
-    public function after_handler($values) {
-        echo ' from hook!';
+    
+    public function beforeConstructor() {
+        parent::beforeConstructor();
+        
+    }
+    
+    public function onLaunch() {
+        parent::onLaunch();
+    }
+    
+    public function afterLaunch() {
+        parent::afterLaunch();
+    }
+    
+    public function beforeLaunch() {
+        parent::beforeLaunch();
+    }
+    
+    public function onBusinessLogic() {
+        parent::onBusinessLogic();
+    }
+    
+    public function onDataAccess() {
+        parent::onDataAccess();
+    }
+    
+    public function onPresentationLoad() {
+        parent::onPresentationLoad();
     }
     
 }

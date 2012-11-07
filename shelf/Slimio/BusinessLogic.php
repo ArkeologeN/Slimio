@@ -30,10 +30,10 @@ abstract class BusinessLogic {
         if ( $func_args[1] instanceof \Hooking) {
             $this->setHooker($func_args[1]);
         }
-        
+        $this->getHooker()->beforeConstructor();
         $pl_dir = $this->_templateDispatcherVO->getBusinessLogicHandler();
         $pl_file = $this->_templateDispatcherVO->getPresentationLayerHander();
-        $this->_presentationLayer = new \Slimio\PresentationLayer($pl_dir, $pl_file);    
+        $this->_presentationLayer = new \Slimio\PresentationLayer($pl_dir, $pl_file);   
     }
     
     public function setHooker($hook = null) {
